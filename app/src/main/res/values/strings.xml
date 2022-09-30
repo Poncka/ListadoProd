@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">ListadoProd</string>
+    <string name="tvID">ID</string>
+    <string name="nombre_del_producto">Nombre del Producto</string>
+</resources>
