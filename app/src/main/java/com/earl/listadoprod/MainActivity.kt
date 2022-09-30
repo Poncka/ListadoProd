@@ -54,8 +54,8 @@ class MainActivity : AppCompatActivity()
             rcvLista.layoutManager = LinearLayoutManager(this@MainActivity)
             rcvLista.adapter = ProductoAdapter(listaProd,
                 {producto -> itemSeleccionado(producto) },
-                {position -> onDeleteItem(position)},
-                {position -> onUpdateItem(position)})
+                {position -> eliminarItem(position)},
+                {position -> editarItem(position)})
 
             clean()
         }
@@ -80,11 +80,11 @@ class MainActivity : AppCompatActivity()
         }
     }
 
-    fun onDeleteItem(position:Int)
+    fun eliminarItem(position:Int)
     {
         val msg = AlertDialog.Builder(this)
         msg.setTitle("Eliminar")
-        msg.setMessage("Si elimina este elemento ya no se podrá recuparar")
+        msg.setMessage("Si elimina este elemento ya no se podrá recuperar")
         msg.setPositiveButton("Eliminar", DialogInterface.OnClickListener
         {_,_ ->
             with(binding)
@@ -103,7 +103,7 @@ class MainActivity : AppCompatActivity()
     }
 
     //Editamos el producto
-    fun onUpdateItem(position: Int)
+    fun editarItem(position: Int)
     {
         try
         {
@@ -117,11 +117,9 @@ class MainActivity : AppCompatActivity()
                 rcvLista.adapter?.notifyItemChanged(position)
             }
         }catch (ex: Exception){
-            Toast.makeText(this@MainActivity, "No se pueden editar datos vacios", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@MainActivity, "Los campos no pueden quedar vacios, revise e intente nuevamente", Toast.LENGTH_SHORT).show()
         }
     }
-
-
 
 }
 
